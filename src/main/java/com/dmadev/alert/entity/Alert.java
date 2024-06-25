@@ -1,5 +1,6 @@
 package com.dmadev.alert.entity;
 
+import com.dmadev.alert.api.constant.AlertLevel;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -14,21 +15,19 @@ import java.time.LocalDateTime;
 
 @Data
 @NoArgsConstructor
-@AllArgsConstructor
-@RequiredArgsConstructor
 @Entity
 @Table(name = "alerts")
 public class Alert {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    private String message;
+    private AlertLevel alertLevel;
+    private double value;
     private LocalDateTime timestamp;
 
-
-    public Alert(String message, LocalDateTime timestamp) {
-        this.message = message;
+    public Alert(AlertLevel alertLevel, double value, LocalDateTime timestamp) {
+        this.alertLevel = alertLevel;
+        this.value = value;
         this.timestamp = timestamp;
     }
 }
