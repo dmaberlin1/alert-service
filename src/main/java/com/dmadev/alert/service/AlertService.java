@@ -1,6 +1,7 @@
 package com.dmadev.alert.service;
 
 
+import com.dmadev.alert.api.constant.AlertLevel;
 import com.dmadev.alert.entity.Alert;
 import com.dmadev.alert.repository.AlertRepository;
 import lombok.RequiredArgsConstructor;
@@ -18,7 +19,8 @@ public class AlertService {
     public void logAndSaveAlert(Alert alertDTO) {
         logger.info("Received alert: {}", alertDTO);
 
-        Alert alert = new Alert(alertDTO.getAlertLevel(), alertDTO.getValue(), alertDTO.getTimestamp());
+        AlertLevel alertLevelEnum = alertDTO.getAlertLevelEnum();
+        Alert alert = new Alert(alertLevelEnum, alertDTO.getValue(), alertDTO.getTimestamp());
 
         alertRepository.save(alert);
     }
