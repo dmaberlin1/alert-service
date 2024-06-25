@@ -6,10 +6,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
 
 import java.time.LocalDateTime;
 
@@ -21,13 +19,21 @@ public class Alert {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private AlertLevel alertLevel;
+
+    private String alertLevel;
+
     private double value;
+
     private LocalDateTime timestamp;
 
     public Alert(AlertLevel alertLevel, double value, LocalDateTime timestamp) {
-        this.alertLevel = alertLevel;
+        this.alertLevel = alertLevel.getText();
         this.value = value;
         this.timestamp = timestamp;
     }
+
+    public AlertLevel getAlertLevelEnum() {
+        return AlertLevel.fromText(this.alertLevel);
+    }
+
 }

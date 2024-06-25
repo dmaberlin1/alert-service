@@ -1,0 +1,25 @@
+<configuration>
+    <appender name="FILE" class="ch.qos.logback.core.FileAppender">
+        <file>logs/alerts.log</file>
+        <append>true</append>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %level [%thread] %logger{10} [%file:%line] %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <logger name="com.dmadev.alert.service.AlertService" level="debug" additivity="false">
+        <appender-ref ref="FILE"/>
+    </logger>
+
+    <root level="off">
+        <appender-ref ref="FILE"/>
+    </root>
+
+</configuration>
+
+
+<!--TRACE – the lowest level of information, mostly used for very deep code debugging, usually not included in production logs.-->
+<!--DEBUG – low level of information used for debugging purposes, usually not included in production logs.-->
+<!--INFO – a log severity carrying information, like an operation that started or finished.-->
+<!--WARN – a log level informing about an event that may require our attention, but is not critical and may be expected.-->
+<!--ERROR – a log level telling that an error, expected or unexpected, usually meaning that part of the system is not working properly.-->
